@@ -8,7 +8,7 @@ frontend:
       commands:
         -npm run build
     artifacts:
-      baseDirectory: dist/testing-ci
+      baseDirectory: dist/on-guard-manager-front
       files:
         -'**/*'
     cache:
