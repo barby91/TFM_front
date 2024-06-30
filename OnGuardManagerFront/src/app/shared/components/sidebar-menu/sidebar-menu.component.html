@@ -1,0 +1,66 @@
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar" class="">
+      <div class="sidebar-header">
+          <h2 class="d-none d-lg-block">HU 12 de Octubre</h2>
+      </div>
+  
+      <ul class="list-unstyled components">
+        <li class="active">
+          <a href="/inicio" id="inicioRef">
+            <span class="fa-solid fa-house"></span> 
+            <span class="menu-text d-none d-lg-inline">Inicio </span>
+          </a>          
+        </li>
+        <li>
+          <a href="/guard" id="guardRef">
+            <span class="fa-solid fa-user-doctor"></span>
+            <span class="menu-text d-none d-lg-inline">Guardias</span>
+          </a>
+        </li>
+        <li>
+          <a href="/calendar" id="calendarRef">
+            <span class="fa-solid fa-calendar-days"></span>
+            <span class="menu-text d-none d-lg-inline">Vacaciones y fines de semana</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink = "/users" id="usersRef">
+            <span class="fa-solid fa-users"></span>
+            <span class="menu-text d-none d-lg-inline">Usuarios</span>
+          </a>
+        </li>
+        <li *ngIf="user != null && user.rolName === 'admin'">
+            <a routerLink ="/specialties" id="sepecialtiesRef">
+              <span class="fa-solid fa-briefcase"></span>
+              <span class="menu-text d-none d-lg-inline">Especialidades</span>
+            </a>
+        </li>
+        <li *ngIf="user != null && user.rolName === 'admin'">
+          <a routerLink ="/commonUnity" id="commonUnityRef">
+            <span class="fa-solid fa-building-un"></span>
+            <span class="menu-text d-none d-lg-inline">Unidades Comunes</span>
+          </a>
+      </li>
+        <li *ngIf="user != null && user.rolName === 'admin'">
+          <a href="/aproveCalendar" id="aproveCalendarRef">
+            <span class="fa-solid fa-thumbs-up"></span>
+            <span class="menu-text d-none d-lg-inline">Aprobar Solicitudes Pendientes</span>
+          </a>
+        </li>
+        <li>
+          <a href="/login" id="logOutRef">
+            <span class="fa-solid fa-power-off"></span>
+            <span class="menu-text d-none d-lg-inline">Cerrar Sesión</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="row navbar-header">
+        <app-header></app-header>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+        <app-spinner></app-spinner>
+    </div>
+  </div>

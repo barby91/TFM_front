@@ -1,0 +1,14 @@
+ /* MD, LG */
+ /* @media (min-width: 767px) {
+}
+/* XS */
+/*@media (max-width: 767px) { */
+    .row {
+        padding-left: calc(var(--bs-gutter-x)* 1.5)!important;
+        margin-right: 10 !important;
+    }
+  /* } */
+  input[type="file"] {
+    display: none;
+    visibility: hidden;
+  }

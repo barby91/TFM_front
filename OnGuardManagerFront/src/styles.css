@@ -1,0 +1,176 @@
+form{
+    margin:20px;
+    align-items: center;
+}
+
+.form-group{    
+    margin-top: 20px;
+}
+
+.far{
+    cursor:pointer
+}
+
+.ng-valid:not(form).ng-touched{
+    border-left: 5px solid #42A948;
+}
+
+.ng-invalid:not(form).ng-touched{
+    border-left: 5px solid #a94442;
+}
+
+th i{
+    margin-left:10px;
+}
+
+td i{
+    margin-left:18px;
+}
+
+table button{
+    background-color: transparent;
+    border: none;
+}
+html, body, material-app {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+  }
+body, 
+.sidebar-header h2 { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif !important; 
+    margin-left: 0.4em;
+}
+
+i #text{
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.buttons-div{
+    text-align: right;
+}
+
+.btnModal{
+    margin-left:10px;
+}
+
+mat-sidenav-content{
+    min-height: 100%;
+}
+.btn-primary{
+    background-color: #0197d4 !important;
+}
+
+.icon-modify{
+    color: #0197d4 !important;
+}
+
+.row{
+    margin-right: 0!important;
+  }
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #de0028;
+}
+
+.right-justify{
+    margin-left: auto;
+    margin-right: 5rem;
+    color: #fff;
+    font-size: 1.1em;
+    font: 400 14px / 20px Roboto, sans-serif;
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    letter-spacing: .0178571429em;
+}
+
+.headerInfo{
+    margin-left: 0.5rem;
+}
+
+.formGuards{
+    display: inline-block;
+}
+
+#seeAllGuards,
+#seeMyGuardsAndMates,
+#seeMyGuards{
+    margin-right: 5px;
+}
+
+#unityTable{
+    margin-top: 1.5rem;
+}
+  /* MD */
+@media (min-width: 767px) and (max-width: 960px) {
+    #formGuard{
+        display: block !important;
+    }
+
+    #calculateGuardDiv,
+    #showGuardsDiv,
+    #myGuardsDiv,
+    #myAndMatesGuardsDiv,
+    #allGuardsDiv{
+        margin-top: 5px;
+    }
+
+    #calculateGuardDiv,
+    #showGuardsDiv{
+        padding-left: 0px;
+    }
+
+    #calendar{
+        display: -webkit-box;
+        overflow: scroll;
+    }
+
+    #userGuard{
+        font-size: 1.25ch;
+    }
+
+    .wrapper{
+        overflow-y: hidden;
+    }
+
+}
+/* XS */
+@media (max-width: 767px) {
+
+    table {
+        table-layout:fixed;
+        display: -webkit-box;
+        overflow: scroll;
+        text-wrap: wrap;
+    }
+
+    .wrapper{
+        overflow-y: hidden;
+    }
+
+    #formGuard{
+        display:block !important;
+    }
+
+    #calculateGuardDiv,
+    #showGuardsDiv,
+    #myGuardsDiv,
+    #myAndMatesGuardsDiv,
+    #allGuardsDiv{
+        margin-top: 5px;
+    }
+
+    #calculateGuardDiv,
+    #showGuardsDiv{
+        padding-left: 0px;
+    }
+
+    #calendar{
+        display: -webkit-box;
+        overflow: scroll;
+    }
+
+    #userGuard{
+        font-size: 1.25ch;
+    }
+}

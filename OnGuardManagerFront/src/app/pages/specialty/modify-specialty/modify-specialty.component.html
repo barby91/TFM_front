@@ -1,0 +1,50 @@
+<form [formGroup]="newSpecialtyForm">
+  <p id="errorModSpecialtyTxt" class="text-danger">{{specialtyError}}</p>
+  <div class="title text-center">
+      <h2>{{title}}</h2>
+  </div>
+  <div class="form-group">
+    <label id="nameSpecialtyLbl" for="InputName1">Nombre</label>
+    <input type="text" class="form-control" id="InputName1" placeholder="nombre" formControlName="name">
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+      <div id="nameError"*ngIf="name.errors?.['required']">El nombre es obligatorio.</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label id="descriptionLbl" for="InputDescription1">Descripción</label>
+    <input type="text" class="form-control" id="InputDescription1" placeholder="descripción" formControlName="description">
+    <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger">
+      <div id="descriptionErrorTxt" *ngIf="description.errors?.['required']">La descripción es obligatoria.</div>
+    </div>
+  </div>
+  <div class="col-10">
+    <table id="unityTable">
+      <thead>
+        <tr>
+          <th class="col-4" data-field="name" data-editable="true">Name</th>
+          <th class="col-7" data-field="description" data-editable="true" data-editable-emptytext="Custom empty text.">Description</th>
+          <th scope="col">
+            <i id="AddUnityIcon" class="far fa-solid fa-plus" (click)="addRow()"></i>
+        </th>
+        </tr>
+      </thead>
+      <tbody>
+        @if(specialty != null){
+          @for (unity of specialty.unities; track unity)
+          {
+              <tr>
+                  <td hidden>{{unity.id}}</td>
+                  <td><input type="text" class="form-control" value="{{unity.name}}"></td>
+                  <td><input type="text" class="form-control" value="{{unity.description}}"></td>
+                  <td><i id="RemoveUnityIcon_{{unity.name}}" class="far fa-solid fa-trash text-danger" (click)="removeRow(unity)"></i></td>
+              </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="form-group buttons-div">    
+    <button id="createBtn" type="submit" class="btn btn-primary btnModal" (click)="save()">{{submitButton}}</button>
+    <button id="cancelBtn" type="submit" class="btn btn-danger btnModal" (click)="close()">Cancelar</button>
+  </div>
+</form>

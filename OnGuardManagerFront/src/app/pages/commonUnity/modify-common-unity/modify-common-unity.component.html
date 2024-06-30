@@ -1,0 +1,24 @@
+<form [formGroup]="newUnityForm">
+    <p id="errorCommonUnityModTxt" class="text-danger">{{commonUnityError}}</p>
+    <div class="title text-center">
+        <h2>{{title}}</h2>
+    </div>
+    <div class="form-group">
+      <label id="nameUnityLbl" for="InputName1">Nombre</label>
+      <input type="text" class="form-control" id="InputName1" placeholder="nombre" formControlName="name">
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+        <div id="nameErrorTxt"*ngIf="name.errors?.['required']">El nombre es obligatorio.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label id="descriptionLbl" for="InputDescription1">Descripción</label>
+      <input type="text" class="form-control" id="InputDescription1" placeholder="descripción" formControlName="description">
+      <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger">
+        <div id="descriptoinErrorTxt" *ngIf="description.errors?.['required']">La descripción es obligatoria.</div>
+      </div>
+    </div>
+    <div class="form-group buttons-div">    
+      <button id="createBtn" type="submit" class="btn btn-primary btnModal" (click)="save()">{{submitButton}}</button>
+      <button id="cancelBtn" type="submit" class="btn btn-danger btnModal" (click)="close()">Cancelar</button>
+    </div>
+  </form>

@@ -1,0 +1,47 @@
+.btn-circle.btn-xl {
+    width: 2.5em;
+    height: 2.5em;
+    padding: 0.5em 0.5em;
+    border-radius: 1.2em;
+    margin: 0.3em;
+    text-align: center;
+    font-size: 48px;
+    line-height: 1.23;
+    background-color: #de0028;
+}
+
+/* XS */
+@media (max-width: 767px) {
+    .buttonline{
+        display: block;
+        margin-left: 30%;
+        margin-top: 5%;
+    }
+
+    .button-div{
+        width: 10.5em!important;
+    }
+}
+
+/* MD, LG */
+@media (min-width: 992px) {
+    .buttonline{
+        display: flex;
+        justify-content: center;
+        margin-top: 5%;
+    }
+
+    .button-div{
+        width: 25.5em!important;
+    }
+}
+
+.menu-div{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+i{
+    color: white;
+}

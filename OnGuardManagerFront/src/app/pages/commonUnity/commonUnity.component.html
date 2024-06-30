@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <p id="errorCommonUnityTxt" class="text-danger">{{commonUnityError}}</p>
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" hidden>Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Description</th>     
+                        <th scope="col">
+                            <i id="AddCommonUnityIcon" class="far fa-solid fa-plus" (click)="openDialog(0, 0)"></i>
+                            <label for="fileInput">
+                                <i class="far fa-solid fa-upload"></i>
+                            </label>
+                            <input type="file" id="fileInput" (change)="selectFile($event)">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (commonUnity of commonUnityList; track commonUnity)
+                    {
+                        <tr>
+                            <td hidden>{{commonUnity.id}}</td>
+                            <td>{{commonUnity.name}}</td>
+                            <td>{{commonUnity.description}}</td>
+                            <td>
+                                <i id="UpdateCommonUnityBtn_{{commonUnity.name}}" class="far fa-solid fa-pen-to-square icon-modify" (click)="openDialog(1, commonUnity.id)"></i>
+                                <i id="DeleteCommonUnityBtn_{{commonUnity.name}}" class="far fa-solid fa-trash text-danger" (click)="delete(commonUnity.id)"></i>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

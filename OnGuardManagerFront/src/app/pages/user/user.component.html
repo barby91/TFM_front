@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <p id="errorUserTxt" class="text-danger">{{userError}}</p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" hidden>#</th>
+                <th scope="col">Nombre y Apellidos</th>
+                <th scope="col">Email</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Especialidad</th>
+                <th scope="col">Centro</th>
+                <th scope="col" *ngIf="user.rolName === 'admin'">
+                    <i id="addUserIcon" class="far fa-solid fa-user-plus" (click)="openDialog(0, 0)"></i>
+                    <label for="fileInput">
+                        <i class="far fa-solid fa-upload"></i>
+                    </label>
+                    <input type="file" id="fileInput" (change)="selectFile($event)">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (user of userList; track user)
+            {
+                <tr>
+                    <td hidden>{{user.id}}</td>
+                    <td>{{user.nameSurname}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.rolName}}</td>
+                    <td>{{user.specialtyName}}</td>
+                    <td>{{user.centerName}}</td>
+                    <td>
+                        <i id="UpdateUserBtn_{{user.nameSurname.replaceAll(' ', '_')}}" class="far fa-solid fa-pen-to-square icon-modify" (click)="openDialog(1, user.id)"></i>
+                        <i *ngIf="user.id != globalUserId" id="DeleteUserBtn_{{user.nameSurname.replaceAll(' ', '_')}}" class="far fa-solid fa-trash text-danger" (click)="delete(user.id)"></i>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

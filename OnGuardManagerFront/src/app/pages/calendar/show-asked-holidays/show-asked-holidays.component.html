@@ -1,0 +1,63 @@
+<mat-dialog-content>
+    
+    <div class="container-fluid">
+        <p id="errorLoginTxt" class="text-danger">{{askedHolidayError}}</p>
+        <div class="row justify-content-center">
+            <div class="title text-center">
+                <h2>Vacaciones Solicitadas</h2>
+            </div>
+            <div class="row col-10">
+                <div class="col-xl-2 col-lg-3 col-sm-2 col-xs-2">
+                    <input class="form-check-input" type="checkbox" name="seeAprovedDays" id="seeAprovedDays" checked (change)="checkChange($event.target)">
+                    <label class="form-check-label" for="seeAprovedDays">
+                        Aprobado
+                    </label>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-sm-2 col-xs-2">
+                    <input class="form-check-input" type="checkbox" name="seeAskedDays" id="seeAskedDays" checked (change)="checkChange($event.target)">
+                    <label class="form-check-label" for="seeAskedDays">
+                        Solicitado
+                    </label>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-sm-2 col-xs-2">
+                    <input class="form-check-input" type="checkbox" name="seeCancelledDays" id="seeCancelledDays" checked (change)="checkChange($event.target)">
+                    <label class="form-check-label" for="seeCancelledDays">
+                        Cancelado
+                    </label>
+                </div>
+            </div> 
+            <div class="col-10">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col" hidden>Id</th>
+                            <th scope="col">Desde</th>
+                            <th scope="col">Hasta</th>
+                            <th scope="col">Periodo</th>
+                            <th scope="col">Estado</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (askedHoliday of filteredAskedHolidayList; track askedHoliday)
+                        {
+                            <tr>
+                                <td hidden>{{askedHoliday.id}}</td>
+                                <td>{{askedHoliday.dateFrom}}</td>
+                                <td>{{askedHoliday.dateTo}}</td>
+                                <td>{{askedHoliday.period}}</td>
+                                <td id="StatusHolidays_{{askedHoliday.dateFrom.replaceAll('-', '')}}_{{askedHoliday.dateTo.replaceAll('-', '')}}">{{askedHoliday.statusDes}}</td>
+                                <td>
+                                    <i *ngIf="askedHoliday.statusDes != 'Cancelado'" id="CancelHolidays_{{askedHoliday.dateFrom.replaceAll('-', '')}}_{{askedHoliday.dateTo.replaceAll('-', '')}}" class="far fa-solid fa-trash text-danger" (click)="delete(askedHoliday.id)"></i>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-10 buttons-div">
+                <button id="doneBtn" class="btn btn-primary btnModal" mat-dialog-close="true">Hecho</button>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>

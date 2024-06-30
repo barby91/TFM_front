@@ -1,0 +1,95 @@
+<form [formGroup]="newUserForm">
+    <p id="errorUserModTxt" class="text-danger">{{userError}}</p>
+    <div class="title text-center">
+        <h2>{{title}}</h2>
+    </div>
+    <div class="form-group">
+      <label id="nameSpecialtyLbl" for="InputName1">Nombre</label>
+      <input type="text" class="form-control" id="InputName1" placeholder="nombre" formControlName="name">
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+        <div id="nameError"*ngIf="name.errors?.['required']">El nombre es obligatorio.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label id="surnameLbl" for="InputSurname1">Apellidos</label>
+      <input type="text" class="form-control" id="InputSurname1" placeholder="apellidos" formControlName="surname">
+      <div *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="text-danger">
+        <div id="surnameErrorTxt" *ngIf="surname.errors?.['required']">El apellido es obligatorio.</div>
+      </div>
+    </div> 
+    <div *ngIf="user != null && user.id === globalUser.id" class="form-group">
+        <label id="passwordLbl" for="InputPassword1">Contraseña</label>
+        <input type="password" class="form-control" id="InputPassword1" placeholder="contraseña" formControlName="password">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+          <div id="passwordErrorTxt" *ngIf="password.errors?.['required']">La contraseña es obligatoria.</div>
+        </div>
+    </div> 
+    <div class="form-group">
+        <div class="dropdown">
+            <button [disabled]="isDisabled" id="rolDropdown" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Seleccione Rol
+            </button>
+            <ul class="dropdown-menu">
+                @for (rol of rolList; track rol)
+                {
+                    <li><button class="dropdown-item" type="button" (click)="selectedRol($event.target, rol.id)">{{rol.name}}</button></li>
+                }
+            </ul>
+        </div>
+        <div *ngIf="rol.invalid && (rol.dirty || rol.touched)" class="text-danger">
+            <div id="rolError"*ngIf="rol.errors?.['min']">El rol es obligatorio.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="dropdown">
+            <button [disabled]="isDisabled" id="levelDropdown" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Seleccione Nivel
+            </button>
+            <ul class="dropdown-menu">
+                @for (level of levelList; track level)
+                {
+                    <li><button class="dropdown-item" type="button" (click)="selectedLevel($event.target, level.id)">{{level.name}}</button></li>
+                }
+            </ul>
+        </div>
+        <div *ngIf="level.invalid && (level.dirty || level.touched)" class="text-danger">
+            <div id="levelError"*ngIf="level.errors?.['min']">El nivel es obligatorio.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="dropdown">
+            <button [disabled]="isDisabled" id="specialtyDropdown" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Seleccione Especialidad
+            </button>
+            <ul class="dropdown-menu">
+                @for (specialty of specialtyList; track specialty)
+                {
+                    <li><button class="dropdown-item" type="button" (click)="selectedSpecialty($event.target, specialty.id)">{{specialty.name}}</button></li>
+                }
+            </ul>
+        </div>
+        <div *ngIf="specialty.invalid && (specialty.dirty || specialty.touched)" class="text-danger">
+            <div id="specialtyError"*ngIf="specialty.errors?.['min']">La especialidad es obligatorio.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="dropdown">
+            <button [disabled]="isDisabled" id="unityDropdown" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Seleccione Unidad
+            </button>
+            <ul class="dropdown-menu">
+                @for (unity of unityList; track unity)
+                {
+                    <li><button class="dropdown-item" type="button" (click)="selectedUnity($event.target, unity.id)">{{unity.name}}</button></li>
+                }
+            </ul>
+        </div>
+        <div *ngIf="unity.invalid && (unity.dirty || unity.touched)" class="text-danger">
+            <div id="unityError"*ngIf="unity.errors?.['min']">La unidad es obligatorio.</div>
+        </div>
+    </div>
+    <div class="form-group buttons-div">    
+      <button id="createBtn" type="submit" class="btn btn-primary btnModal" (click)="save()">{{submitButton}}</button>
+      <button id="cancelBtn" type="submit" class="btn btn-danger btnModal" (click)="close()">Cancelar</button>
+    </div>
+</form>

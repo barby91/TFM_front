@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <p id="errorSpecialtyTxt" class="text-danger">{{specialtyError}}</p>
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" hidden>Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Unidades</th>  
+                        <th scope="col">Número de Médicos</th>  
+                        <th scope="col">
+                            <i id="AddSpecialtyIcon" class="far fa-solid fa-plus" (click)="openDialog(0, 0)"></i>
+                            <label for="fileInput">
+                                <i class="far fa-solid fa-upload"></i>
+                            </label>
+                            <input type="file" id="fileInput" (change)="selectFile($event)">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (specialty of specialtyList; track specialty)
+                    {
+                        <tr>
+                            <td hidden>{{specialty.id}}</td>
+                            <td>{{specialty.name}}</td>
+                            <td>{{specialty.description}}</td>
+                            <td>{{specialty.unities.length}}</td>
+                            <td>{{specialty.totalUsers}}</td>
+                            <td>
+                                <i id="UpdateSpecialtyBtn_{{specialty.name}}" class="far fa-solid fa-pen-to-square icon-modify" (click)="openDialog(1, specialty.id)"></i>
+                                <i id="DeleteSpecialtyBtn_{{specialty.name}}" class="far fa-solid fa-trash text-danger" (click)="delete(specialty.id)"></i>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

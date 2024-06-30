@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <p id="errorLoginTxt" class="text-danger">{{pendingAskedHolidayError}}</p>
+    <div class="row justify-content-center">
+        <div class="title text-center">
+            <h2>Vacaciones Pendientes de Aprobación</h2>
+        </div>
+        <div class="col-10">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" hidden>Id</th>
+                        <th scope="col">Desde</th>
+                        <th scope="col">Hasta</th>
+                        <th scope="col">Periodo</th>
+                        <th scope="col">Usuario</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (askedHoliday of pendingAskingHolidayList; track askedHoliday)
+                    {
+                        <tr>
+                            <td hidden>{{askedHoliday.id}}</td>
+                            <td>{{askedHoliday.dateFrom}}</td>
+                            <td>{{askedHoliday.dateTo}}</td>
+                            <td>{{askedHoliday.period}}</td>
+                            <td>{{askedHoliday.nameSurname}}</td>
+                            <td>
+                                <i id="AproveHolidays_{{askedHoliday.nameSurname.replaceAll(' ', '_')}}_{{askedHoliday.dateFrom.replaceAll('-', '')}}_{{askedHoliday.dateTo.replaceAll('-', '')}}" class="fa-solid fa-square-check icon-modify" (click)="changeStatus(askedHoliday.id, 'Aprobado')"></i>
+                                <i id="CancelHolidays_{{askedHoliday.nameSurname.replaceAll(' ', '_')}}_{{askedHoliday.dateFrom.replaceAll('-', '')}}_{{askedHoliday.dateTo.replaceAll('-', '')}}" class="fa-solid fa-rectangle-xmark text-danger" (click)="changeStatus(askedHoliday.id, 'Cancelado')"></i>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

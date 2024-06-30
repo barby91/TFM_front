@@ -1,0 +1,44 @@
+<div class="row justify-content-center menu-div">
+    <div class="col-12">
+        <div class="buttonline">
+            <div class="row justify-content-center button-div">
+                <button id="GuardsBtn" type="button" class="btn-circle btn-xl" title="Guardias" (click)="guardsCalendar()">
+                    <i class="fa-solid fa-user-doctor"></i>
+                </button>
+                <label class="text-center">Guardias</label>
+            </div> 
+            <div class="row justify-content-center button-div">
+                <button id="HolidaysBtn" type="button" class="btn-circle btn-xl" title="Solicitar Vacaciones y fines de semana" (click)="workingCalendar()">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </button>
+                <label class="text-center">Solicitar Vacaciones y fines de semana</label>
+            </div> 
+            <div class="row justify-content-center button-div">
+                <button id="UsersBtn"  type="button" class="btn-circle btn-xl" title="usuarios" (click)="users()">
+                    <i class="fa-solid fa-users"></i>
+                </button>
+                <label class="text-center">Usuarios</label>
+            </div> 
+        </div>
+        <div *ngIf="user.rolName === 'admin'" class="buttonline">
+            <div class="row justify-content-center button-div">
+                <button id="SpecialtiesBtn" type="button" class="btn-circle btn-xl" title="especialidades" (click)="specialties()">
+                    <i class="fa-solid fa-briefcase"></i>
+                </button>
+                <label class="text-center">Especialidades</label>
+            </div>
+            <div class="row justify-content-center button-div">
+                <button id="CommonUnityBtn" type="button" class="btn-circle btn-xl" title="unidades comunes" (click)="commonUnities()">
+                    <i class="fa-solid fa-building-user"></i>
+                </button>
+                <label class="text-center">Unidades Comunes</label>
+            </div>
+            <div class="row justify-content-center button-div">
+                <button id="AproveAskedHolidaysBtn" type="button" class="btn-circle btn-xl" title="aprobar solicitudes" (click)="checkAskedHolidays()">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                </button>
+                <label class="text-center">Aprobar solicitudes pendientes</label>
+            </div>
+        </div>
+    </div>
+</div>

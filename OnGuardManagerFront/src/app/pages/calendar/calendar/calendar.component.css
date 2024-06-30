@@ -1,0 +1,107 @@
+ *{
+    outline: none !important
+  }
+      
+  ol {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    padding: .25rem;
+    font-size: 1.5ch;
+    cursor: pointer;
+  }
+  li:hover{
+    font-weight: 600;
+  }
+  h2 {
+    margin-bottom: 4px;
+    padding: 0;
+  }
+  
+  .first-day {
+    grid-column-start: var(--first-day-start, 0);
+  }
+  
+  .day-name {
+    background: #eee;
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 2px;
+    padding: 4px;
+    text-align: center;
+  }
+  
+  .header-calendar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    background-color: #0197d4;
+  }
+  
+  .header-calendar h1 {
+    width: 100%;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+  .header-calendar button {
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+  }
+  
+  .selected-day{
+      background-color: red;
+  }
+  .middle-selected-day{
+      background-color: coral;
+  }
+  
+  .titleInfo{
+    font-weight: bold;
+  }
+
+  .dayLbl{
+    text-align: center;
+  }
+
+  .aprovedAskedHoliday{
+    background-color: greenyellow;
+  }
+
+  .middleAprovedAskedHoliday{
+    background-color: rgb(205, 237, 157);
+  }
+
+  .askedHoliday{
+    background-color: orange;
+  }
+
+  .middleAskedHoliday{
+    background-color: rgb(232, 184, 95);
+  }
+
+  /* XS */
+@media (max-width: 767px) {
+  .calendar-row{
+    display: block!important;
+  }
+
+  .row {
+    margin-left: 0 !important;
+  }
+}
+
+/*MD*/
+@media (min-width: 767px) and (max-width: 960px) {
+  .row {
+    margin-left: 0px !important;
+  }
+}
