@@ -485,10 +485,9 @@ export class CalendarComponent {
 
       dialogRef.afterClosed().subscribe(result => {
         if(result === 'true'){
+          console.log(this.askedHolidayForm.value as askedHolidayModel);
           this._askedHolidayService.addAskedHoliday(this.askedHolidayForm.value as askedHolidayModel).subscribe({
             next:(userLoggedData) => {
-              console.log("add asked holiday");
-              console.log(userLoggedData);
               if(userLoggedData) {
                 this.globalUser = userLoggedData as userModel;
                 localStorage.setItem("user", JSON.stringify(this.globalUser));
@@ -496,7 +495,6 @@ export class CalendarComponent {
               }
             },
             error: (errorData => {
-              console.log(errorData);
               this.calendarError = errorData;
               this.unselectedDays();
               var inputDateElement = (<HTMLInputElement>document.getElementById("InputStartDate1"));

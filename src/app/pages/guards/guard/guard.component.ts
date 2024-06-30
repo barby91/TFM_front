@@ -61,24 +61,29 @@ export class GuardComponent {
     this.removeActiveClass();
     var currentMonth = moment().month()+1;
     this.year = moment().year();
-    for(var element in this.totalMonths){
+    for(var element in this.totalMonths)
+    {
       this.getDaysFromDate(this.totalMonths[element].num, 2024);
-      if(currentMonth < this.totalMonths[element].num){
+      if(currentMonth < this.totalMonths[element].num)
+      {
         this.leftMonths.push(this.totalMonths[element]);
       }
     }
 
     var userString = localStorage.getItem('user');
-    if(userString !== null){
+    if(userString !== null)
+    {
       this.globalUser = JSON.parse(userString as string);
     }; 
 
     this.calculateGuardForm.controls.idCenter.setValue(this.globalUser.centerId);
   }
 
-  removeActiveClass(){
+  removeActiveClass()
+  {
     var element = document.querySelector("li.active");
-    if(element !== null){
+    if(element !== null)
+    {
       element.className = element.className.replaceAll("active", "");
     }
 
@@ -114,15 +119,17 @@ export class GuardComponent {
     return this.daysMonth.find(dm => dm.mes === month.num).days;
   } 
 
-  selectedMonth(element:any,month:number){
+  selectedMonth(element:any,month:number)
+  {
     this.calculateGuardForm.controls.month.setValue(month);
     var buttonParent = document.getElementById('monthDropdown');
     if(buttonParent !== null){
-      buttonParent.textContent = element.textContent;
-    }      
+      buttonParent.textContent = element.textContent ;
+    }
   }
 
-  calculateGuard(){
+  calculateGuard()
+  {
     this.calculateGuardError = "";
     this.isError = false;
     this.isButtonDisabled = true;
@@ -130,8 +137,7 @@ export class GuardComponent {
       next:(dayGuard) => {
         this.isButtonDisabled = false;
       },
-      error: (errorData => {      
-        console.log(errorData)  
+      error: (errorData => {        
         this.isButtonDisabled = false;
         this.isError = true;
         this.calculateGuardError = errorData;
@@ -141,127 +147,101 @@ export class GuardComponent {
 
   checkChange(element:any){
     if(element.id.includes("Mates")){
+      console.log("mias y compañeros");
       this.seeGuards = 2;
     }
     else if(element.id.includes("MyGuards")){
+      console.log("mías");
       this.seeGuards = 1;
     }
     if(element.id.includes("AllGuards")){
+      console.log("todas");
       this.seeGuards = 3;
     }
 
     this.showGuards();
   }
 
-  paintDay(dayGuard:dayGuardModel, matesNames:string[]): string[]{
-    var paint = true;
-    //comprobamos si hay que pintar el día
-    switch(this.seeGuards){
-      case 1:
-        //ver mis guardias
-        if(dayGuard.assignedUsers.find(au => au.nameSurname.startsWith(this.globalUser.nameSurname)) != null){
-          paint = true;
-        }
-        else{
-          paint = false;
-        }
-        break;
-      case 2:
-        //ver mis guardias y las de mis compañeros
-        if(dayGuard.assignedUsers.find(au => au.nameSurname.startsWith(this.globalUser.nameSurname)) != null){
-          paint = true;
-          let date = new Date(dayGuard.day);
-          if(date.getMonth() >= (new Date()).getMonth()){
-            for(let usr of dayGuard.assignedUsers){
-              if(matesNames.find(mn => mn == usr.nameSurname) == null){
-                matesNames.push(usr.nameSurname);
-              }
-            }
-          }
-        }
-        else{
-          paint = false;
-        }
-        
-        break;
-      default:
-        paint = true;
-        break;
-    }
-    var dayParent = document.getElementById(dayGuard.day);
-    if(dayParent != null){
-      dayParent.children[0].innerHTML ="";
-      if(paint){
-        for(let usr of dayGuard.assignedUsers){
-          //var tr = "<labelstyle=\"background-color: " + usr.color + ";\">" + usr.nameSurname + "</label>";
-          var label = document.createElement("label");
-          var color = "background-color: "+ usr.color + ";";
-          label.id = dayGuard.day + "-" + usr.nameSurname;
-          label.setAttribute("style", color);
-          label.textContent = usr.nameSurname;
-          dayParent.children[0].appendChild(label);
-        }
-      }
-    }
-
-    return matesNames;
-  }
-
-  showGuards(){
+  showGuards()
+  {
     var paint = true;
     let matesNames = [] as string[];
     this.calculateGuardError = "";
     this.isError = false;
     this._guardService.getGuardAssigment(this.globalUser.centerId).subscribe({
       next:(dayGuard) => {
-        if(dayGuard){
+        if(dayGuard)
+        {
           this.dayGuardsYear = dayGuard as dayGuardModel[];
           var dateElement = document.getElementById("calendar");
-          if(dateElement != null){
-            dateElement.hidden = false;
-          }
-          
-          let currentMonth = this.dayGuardsYear[0].day.split('-')[1];
-          for (let dayGuard of this.dayGuardsYear){
-            if(currentMonth == dayGuard.day.split('-')[1]){
-              matesNames = this.paintDay(dayGuard, matesNames);
+            if(dateElement != null){
+              dateElement.hidden = false;
             }
-            else{
-              if(this.seeGuards == 2){
-                for (let dayGuard of this.dayGuardsYear){
+          for (let dayGuard of this.dayGuardsYear)
+          {
+            //comprobamos si hay que pintar el día
+            switch(this.seeGuards)
+            {
+              case 1:
+                //ver mis guardias
+                if(dayGuard.assignedUsers.find(au => au.nameSurname.startsWith(this.globalUser.nameSurname)) != null)
+                {
+                  paint = true;
+                }
+                else
+                {
                   paint = false;
-                  if(currentMonth == dayGuard.day.split('-')[1]){
-                    //comprobamos si hay que pintar el día
-                    if(dayGuard.assignedUsers.find(au => au.nameSurname.startsWith(this.globalUser.nameSurname)) == null){
-                      for(let usr of dayGuard.assignedUsers){
-                        if(matesNames.find(mn => mn == usr.nameSurname) != null){
-                          paint = true;
-                          break;
-                        }
-                      }
-                    }
-                    var dayParent = document.getElementById(dayGuard.day);
-                    if(dayParent != null){
-                      if(paint){
-                        dayParent.children[0].innerHTML ="";
-                        for(let usr of dayGuard.assignedUsers){
-                          if(matesNames.find(mn => mn == usr.nameSurname) != null){
-                            var label = document.createElement("label");
-                            label.id = dayGuard.day + "-" + usr.nameSurname;
-                            var color = "background-color: "+ usr.color + ";";
-                            label.setAttribute("style", color);
-                            label.textContent = usr.nameSurname;
-                            dayParent.children[0].appendChild(label);
-                          }
-                        }
+                }
+                break;
+              case 2:
+                //ver mis guardias y las de mis compañeros
+                if(dayGuard.assignedUsers.find(au => au.nameSurname.startsWith(this.globalUser.nameSurname)) != null)
+                {
+                  paint = true;
+                  let date = new Date(dayGuard.day);
+                  if(date.getMonth() >= (new Date()).getMonth())
+                  {
+                    for(let usr of dayGuard.assignedUsers){
+                      if(matesNames.find(mn => mn == usr.nameSurname) == null)
+                      {
+                        matesNames.push(usr.nameSurname);
                       }
                     }
                   }
                 }
+                else
+                {
+                  paint = false;
+                }
+                
+                for(let usr of dayGuard.assignedUsers){
+                  console.log(matesNames);
+                  if(matesNames.find(mn => mn == usr.nameSurname) != null)
+                  {
+                    paint = true;
+                    break;
+                  }
+                }
+                
+                break;
+              default:
+                paint = true;
+                break;
+            }
+            var dayParent = document.getElementById(dayGuard.day);
+            if(dayParent != null){
+              dayParent.children[0].innerHTML ="";
+              if(paint)
+              {
+                for(let usr of dayGuard.assignedUsers){
+                  var tr = "<labelstyle=\"background-color: " + usr.color + ";\">" + usr.nameSurname + "</label>";
+                  var label = document.createElement("label");
+                  var color = "background-color: "+ usr.color + ";";
+                  label.setAttribute("style", color);
+                  label.textContent = usr.nameSurname;
+                  dayParent.children[0].appendChild(label);
+                }
               }
-              matesNames = [] as string[];
-              currentMonth = dayGuard.day.split('-')[1];
-              matesNames = this.paintDay(dayGuard, matesNames);
             }
           }
         }
