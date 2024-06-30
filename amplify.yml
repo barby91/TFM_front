@@ -8,9 +8,9 @@ frontend:
       commands:
         -npm run build
   artifacts:
-    baseDirectory: ["dist/on-guard-manager-front"]
+    baseDirectory: dist/on-guard-manager-front
     files:
-      -'**/*'
+      - '**/*'
   cache:
     paths:
       - node_modules/**/*
