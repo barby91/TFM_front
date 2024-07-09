@@ -49,7 +49,7 @@ export class GuardComponent {
 
   calculateGuardError:string = "";
   calculateGuardForm = new FormGroup({
-    month: new FormControl(0),
+    groupOfWeeks: new FormControl(0),
     idCenter: new FormControl(0),
     idSpecialty: new FormControl(0)
   });
@@ -63,12 +63,30 @@ export class GuardComponent {
     this.year = moment().year();
     for(var element in this.totalMonths)
     {
-      this.getDaysFromDate(this.totalMonths[element].num, 2024);
-      if(currentMonth < this.totalMonths[element].num)
-      {
-        this.leftMonths.push(this.totalMonths[element]);
-      }
+      this.getDaysFromDate(this.totalMonths[element].num, this.year);
     }
+
+    let totalDaysYear: number = this.daysInYear(this.year);
+      let firstDay: Date = new Date(this.year, 0, 1);
+      let lastDay: Date = new Date(this.year, 0, 1);
+      let now : Date = new Date(this.year, moment().month(), moment().date());
+      if (firstDay.getDay() !== 1) {
+          let daysToAdd: number = ((1 - firstDay.getDay() + 7) % 7);
+          firstDay.setDate(firstDay.getDate() + daysToAdd);
+      }
+
+      let daysAssigned = 0;
+      while (daysAssigned <= (totalDaysYear/30)) {
+        lastDay.setDate(firstDay.getDate() + 29)
+        daysAssigned++;
+        console.log("primer día" + firstDay.toLocaleDateString());
+        console.log("ultimo día" + lastDay.toLocaleDateString());
+        if(lastDay >= now && firstDay >= now)
+        {
+          this.leftMonths.push({sp: firstDay.toLocaleDateString() + " - " + lastDay.toLocaleDateString(), en: firstDay.toLocaleDateString() + " - " + lastDay.toLocaleDateString(), num: daysAssigned});
+        }
+        firstDay.setDate(firstDay.getDate() + 30);
+      }
 
     var userString = localStorage.getItem('user');
     if(userString !== null)
@@ -79,6 +97,9 @@ export class GuardComponent {
     this.calculateGuardForm.controls.idCenter.setValue(this.globalUser.centerId);
   }
 
+  daysInYear(year:number) {
+    return ((year % 4 === 0 && year % 100 > 0) || year %400 == 0) ? 366 : 365;
+  }
   removeActiveClass()
   {
     var element = document.querySelector("li.active");
@@ -119,9 +140,9 @@ export class GuardComponent {
     return this.daysMonth.find(dm => dm.mes === month.num).days;
   } 
 
-  selectedMonth(element:any,month:number)
+  selectedMonth(element:any,groupOfWeeks:number)
   {
-    this.calculateGuardForm.controls.month.setValue(month);
+    this.calculateGuardForm.controls.groupOfWeeks.setValue(groupOfWeeks);
     var buttonParent = document.getElementById('monthDropdown');
     if(buttonParent !== null){
       buttonParent.textContent = element.textContent ;
@@ -258,8 +279,8 @@ export class GuardComponent {
     });
   }
 
-  get month(){
-    return this.calculateGuardForm.controls['month'];
+  get groupOfWeeks(){
+    return this.calculateGuardForm.controls['groupOfWeeks'];
   }
 
 }
