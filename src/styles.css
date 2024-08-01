@@ -46,8 +46,13 @@ body,
 i #text{
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
 .buttons-div{
     text-align: right;
+}
+
+.center-text{
+    text-align: center;
 }
 
 .btnModal{
@@ -82,6 +87,16 @@ mat-sidenav-content{
     font: 400 14px / 20px Roboto, sans-serif;
     font-family: Roboto, "Helvetica Neue", sans-serif !important;
     letter-spacing: .0178571429em;
+}
+
+.center{
+    width: 85%;
+    color:chartreuse;
+    font-size: 1.1em;
+    font: 400 50px / 20px Roboto, sans-serif;
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    letter-spacing: .0178571429em;
+    font-weight: bold;
 }
 
 .headerInfo{

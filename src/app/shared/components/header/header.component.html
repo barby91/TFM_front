@@ -2,6 +2,9 @@
   <div class="header">
     <div class="contenedor">
       <img src="assets/images/logo.png" (click)="sidebarmenu()"/>
+      <div *ngIf="!isProd" class="center">
+        <p class="center-text">DEV DEV DEV</p>
+      </div>
       <div class="right-justify">
         <p class="menu-text"><span *ngIf="user!=undefined" class="fa-solid fa-user"></span><span class="headerInfo">{{getUserName()}}</span></p>
         <p class="menu-text"><span *ngIf="user!=undefined" class="fa-solid fa-gear"></span><span class="headerInfo">{{getRolName()}}</span></p>

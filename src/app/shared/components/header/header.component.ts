@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { userModel } from '../../../models/userModel';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -16,8 +17,9 @@ import { CommonModule } from '@angular/common';
 export class HeaderComponent {
   visibleSidebar: any;
   user: userModel | undefined;
-
+  isProd:boolean = false;
   ngOnInit(){
+    this.isProd = environment.production
     if(window.location.href.includes('login') || window.location.href.endsWith('/'))
     {
       localStorage.setItem("visibleSidebar", "false")
