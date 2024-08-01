@@ -103,6 +103,10 @@ mat-sidenav-content{
     margin-left: 0.5rem;
 }
 
+.menu-text{
+    margin-left: 0.5em;
+}
+
 .formGuards{
     display: inline-block;
 }

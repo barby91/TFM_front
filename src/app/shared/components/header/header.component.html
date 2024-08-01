@@ -6,8 +6,18 @@
         <p class="center-text">DEV DEV DEV</p>
       </div>
       <div class="right-justify">
-        <p class="menu-text"><span *ngIf="user!=undefined" class="fa-solid fa-user"></span><span class="headerInfo">{{getUserName()}}</span></p>
         <p class="menu-text"><span *ngIf="user!=undefined" class="fa-solid fa-gear"></span><span class="headerInfo">{{getRolName()}}</span></p>
+        <div class="dropdown" *ngIf="user!=undefined">
+          <p class="menu-text"><span class="fa-solid fa-user"></span><span class="headerInfo">{{getUserName()}}</span></p>
+          <div class="dropdown-content">
+            <li>
+              <a href="/login" id="logOutRef">
+                <span class="fa-solid fa-power-off"></span>
+                <span class="menu-text d-none d-lg-inline">Cerrar Sesión</span>
+              </a>
+            </li>
+          </div>
+        </div>
       </div>
     </div>
   </div>
