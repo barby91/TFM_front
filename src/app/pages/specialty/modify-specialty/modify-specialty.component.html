@@ -22,7 +22,9 @@
       <thead>
         <tr>
           <th class="col-4" data-field="name" data-editable="true">Name</th>
-          <th class="col-7" data-field="description" data-editable="true" data-editable-emptytext="Custom empty text.">Description</th>
+          <th class="col-7" data-field="description" data-editable="true">Description</th>
+          <th class="col-4" data-field="name" data-editable="true">Max/día</th>
+          <th class="col-7" data-field="description" data-editable="true">Max/día(FS)</th>
           <th scope="col">
             <i id="AddUnityIcon" class="far fa-solid fa-plus" (click)="addRow()"></i>
         </th>
@@ -36,6 +38,8 @@
                   <td hidden>{{unity.id}}</td>
                   <td><input type="text" class="form-control" value="{{unity.name}}"></td>
                   <td><input type="text" class="form-control" value="{{unity.description}}"></td>
+                  <td><input type="text" class="form-control" value="{{unity.maxByDay}}"></td>
+                  <td><input type="text" class="form-control" value="{{unity.maxByDayWeekend}}"></td>
                   <td><i id="RemoveUnityIcon_{{unity.name}}" class="far fa-solid fa-trash text-danger" (click)="removeRow(unity)"></i></td>
               </tr>
           }

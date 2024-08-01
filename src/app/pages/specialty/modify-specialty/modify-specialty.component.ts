@@ -84,7 +84,9 @@ export class ModifySpecialtyComponent {
   addRow(){
     var tr = "<tr> <td hidden>0</td>\
                    <td><input type=\"text\" class=\"form-control\" placeholder=\"nombre\"></td>\
-                   <td><input type=\"text\" class=\"form-control\" placeholder=\"nombre\"></td> </tr>";
+                   <td><input type=\"text\" class=\"form-control\" placeholder=\"nombre\"></td>\
+                   <td><input type=\"text\" class=\"form-control\" placeholder=\"nombre\"></td> \
+                   <td><input type=\"text\" class=\"form-control\" placeholder=\"nombre\"></td>  </tr>";
     var tableRef = (<HTMLTableElement>document.getElementById("unityTable")).tBodies[0];
     var newRow = tableRef.insertRow(tableRef.rows.length);
     newRow.innerHTML = tr;
@@ -114,6 +116,7 @@ export class ModifySpecialtyComponent {
   }
 
   save() {
+    console.log(this.newSpecialtyForm);
     if(this.newSpecialtyForm.valid){
       if(this.mode === 1){
         var modifySpecialty = this.newSpecialtyForm.value as specialtyModel;
@@ -125,12 +128,14 @@ export class ModifySpecialtyComponent {
         {
           var id = (<HTMLTableElement>tableRef.children[i].children[0]).innerText;
           var name = (<HTMLInputElement>tableRef.children[i].children[1].children[0]).value;
-          var description = (<HTMLInputElement>tableRef.children[i].children[2].children[0]).value;     
+          var description = (<HTMLInputElement>tableRef.children[i].children[2].children[0]).value;   
+          var maxByDay = (<HTMLInputElement>tableRef.children[i].children[3].children[0]).value; 
+          var maxByDayWeekend = (<HTMLInputElement>tableRef.children[i].children[4].children[0]).value;   
           if(id === '0'){     
             tableRef.removeChild(tableRef.children[i]);    
           }   
           if(name != null && description != null){
-            let unity = new unityModel(Number(id), name, description);     
+            let unity = new unityModel(Number(id), name, description, Number(maxByDay), Number(maxByDayWeekend));     
             this.specialty.unities.push(unity);
           }
         }
@@ -158,12 +163,14 @@ export class ModifySpecialtyComponent {
         {
           var id = (<HTMLTableElement>tableRef.children[i].children[0]).innerText;
           var name = (<HTMLInputElement>tableRef.children[i].children[1].children[0]).value;
-          var description = (<HTMLInputElement>tableRef.children[i].children[2].children[0]).value;     
+          var description = (<HTMLInputElement>tableRef.children[i].children[2].children[0]).value;   
+          var maxByDay = (<HTMLInputElement>tableRef.children[i].children[3].children[0]).value; 
+          var maxByDayWeekend = (<HTMLInputElement>tableRef.children[i].children[4].children[0]).value;     
           if(id === '0'){     
             tableRef.removeChild(tableRef.children[i]);    
           }   
           if(name != null && description != null){
-            let unity = new unityModel(Number(id), name, description);     
+            let unity = new unityModel(Number(id), name, description, Number(maxByDay), Number(maxByDayWeekend));     
             this.specialty.unities.push(unity);
           }
         }
