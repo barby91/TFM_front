@@ -58,10 +58,10 @@
   }
   
   .selected-day{
-      background-color: red;
+      background-color: red!important;
   }
   .middle-selected-day{
-      background-color: coral;
+      background-color: coral!important;
   }
   
   .titleInfo{
@@ -73,19 +73,19 @@
   }
 
   .aprovedAskedHoliday{
-    background-color: greenyellow;
+    background-color: greenyellow!important;
   }
 
   .middleAprovedAskedHoliday{
-    background-color: rgb(205, 237, 157);
+    background-color: rgb(205, 237, 157)!important;
   }
 
   .askedHoliday{
-    background-color: orange;
+    background-color: orange!important;
   }
 
   .middleAskedHoliday{
-    background-color: rgb(232, 184, 95);
+    background-color: rgb(232, 184, 95)!important;
   }
 
   /* XS */

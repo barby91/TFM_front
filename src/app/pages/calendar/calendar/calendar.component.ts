@@ -49,7 +49,8 @@ export class CalendarComponent {
     dateTo: new FormControl('', Validators.required),
     period: new FormControl(moment().year().toString(), Validators.min(1)),
     statusDes: new FormControl('Solicitado'),
-    idUser:new FormControl(0)
+    idUser:new FormControl(0),
+    idCenter:new FormControl(0)
   });
   globalUser!:userModel;
   startSelectedDate!: Date;
@@ -87,7 +88,8 @@ export class CalendarComponent {
       dateTo: new FormControl('', Validators.required),
       period: new FormControl(moment().year().toString(), Validators.min(1)),
       statusDes: new FormControl('Solicitado'),
-      idUser:new FormControl(this.globalUser.id)
+      idUser:new FormControl(this.globalUser.id),
+      idCenter: new FormControl(this.globalUser.centerId)
     });
 
     this.getPublicHoliday();
@@ -252,9 +254,10 @@ export class CalendarComponent {
       var id = currentDate.getDate() + "-" + (currentDate.getMonth()+1);
       var element = document.getElementById(id);
       if((element != null) &&
-        (((this.typeAsked === "Holiday" && currentDate.getDay() != 0 && currentDate.getDay() != 6) ||
-         (this.typeAsked === "Weekend" && (currentDate.getDay() === 0 || currentDate.getDay() === 6))) &&
-         !element.className.includes("publicHoliday"))){
+        (((this.typeAsked === "Holiday" && currentDate.getDay() != 0 && currentDate.getDay() != 6 &&
+        !element.className.includes("publicHoliday")) ||
+        (this.typeAsked === "Weekend" && (element.className.includes("publicHoliday") || 
+                                            (currentDate.getDay() === 0 || currentDate.getDay() === 6)))))){
         element.className += className2;
       }
     }
@@ -339,10 +342,12 @@ export class CalendarComponent {
           this.unselectedDays();
         }
         //solo pintamos si el día seleccionado corresponde
-        if(((this.typeAsked === "Holiday" && selectedDate.getDay() != 0 && selectedDate.getDay() != 6) ||
-           (this.typeAsked === "Weekend" && (selectedDate.getDay() === 0 || selectedDate.getDay() === 6))) &&
-           !selectedDayElement.className.includes("publicHoliday")){
+        if(((this.typeAsked === "Holiday" && selectedDate.getDay() != 0 && selectedDate.getDay() != 6 &&
+             !selectedDayElement.className.includes("publicHoliday")) || 
+            (this.typeAsked === "Weekend" && (selectedDayElement.className.includes("publicHoliday") ||
+                                              (selectedDate.getDay() === 0 || selectedDate.getDay() === 6))))){
           if(this.clicks === 0){
+            console.log("hola");
             this.startSelectedDate = selectedDate;
             inputDateElement = (<HTMLInputElement>document.getElementById("InputStartDate1"));
             this.askedHolidayForm.controls['dateFrom'].setValue(moment(selectedDate).format('YYYY-MM-DD'));
@@ -389,9 +394,10 @@ export class CalendarComponent {
       var id = currentDate.getDate() + "-" + (currentDate.getMonth()+1);
       var element = document.getElementById(id);
       if(element != null && (
-         (((this.typeAsked === "Holiday" && currentDate.getDay() != 0 && currentDate.getDay() != 6) ||
-         (this.typeAsked === "Weekend" && (currentDate.getDay() === 0 || currentDate.getDay() === 6))) &&
-         !element.className.includes("publicHoliday"))
+         (((this.typeAsked === "Holiday" && currentDate.getDay() != 0 && currentDate.getDay() != 6 &&
+            !element.className.includes("publicHoliday")) ||
+           (this.typeAsked === "Weekend" && (element.className.includes("publicHoliday") || 
+                                             (currentDate.getDay() === 0 || currentDate.getDay() === 6)))))
         )) 
       {
         element.className += " middle-selected-day";

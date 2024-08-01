@@ -7,8 +7,9 @@ export class askedHolidayModel{
     period!: string
     statusDes!: string
     idUser!: number
+    idCenter!: number
 
-    pendingAskedHolidayToAskedHoliday(selectedHoliday: pendingAskedHolidayModel, status:string)
+    pendingAskedHolidayToAskedHoliday(selectedHoliday: pendingAskedHolidayModel, status:string, idCenter:number)
     {
         this.id = selectedHoliday.id;
         this.dateFrom = selectedHoliday.dateFrom;
@@ -16,5 +17,6 @@ export class askedHolidayModel{
         this.period = selectedHoliday.period;
         this.statusDes = status;
         this.idUser = selectedHoliday.idUser;
+        this.idCenter = idCenter
     }
 }
