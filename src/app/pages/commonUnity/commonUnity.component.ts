@@ -48,7 +48,7 @@ export class CommonUnityComponent {
 
   getAllCommonUnities() {
     this.commonUnityError = "";
-    this._unityService.getAllCommonUnity().subscribe({
+    this._unityService.getAllCommonUnity(this.user.centerId).subscribe({
       next:(commonUnityData) => {
         if(commonUnityData)
         {

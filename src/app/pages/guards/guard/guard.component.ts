@@ -255,11 +255,11 @@ export class GuardComponent {
               if(paint)
               {
                 for(let usr of dayGuard.assignedUsers){
-                  var tr = "<labelstyle=\"background-color: " + usr.color + ";\">" + usr.nameSurname + "</label>";
                   var label = document.createElement("label");
-                  var color = "background-color: "+ usr.color + ";";
-                  label.setAttribute("style", color);
+                  //var color = "background-color: "+ usr.color + ";";
+                  //label.setAttribute("style", color);
                   label.textContent = usr.nameSurname;
+                  label.id = dayGuard.day + "-" + usr.nameSurname;
                   dayParent.children[0].appendChild(label);
                 }
               }

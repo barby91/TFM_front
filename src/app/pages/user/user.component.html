@@ -8,6 +8,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Rol</th>
                 <th scope="col">Especialidad</th>
+                <th scope="col">Unidad</th>
                 <th scope="col">Centro</th>
                 <th scope="col" *ngIf="user.rolName === 'admin'">
                     <i id="addUserIcon" class="far fa-solid fa-user-plus" (click)="openDialog(0, 0)"></i>
@@ -27,6 +28,7 @@
                     <td>{{user.email}}</td>
                     <td>{{user.rolName}}</td>
                     <td>{{user.specialtyName}}</td>
+                    <td>{{user.unityName}}</td>
                     <td>{{user.centerName}}</td>
                     <td>
                         <i id="UpdateUserBtn_{{user.nameSurname.replaceAll(' ', '_')}}" class="far fa-solid fa-pen-to-square icon-modify" (click)="openDialog(1, user.id)"></i>

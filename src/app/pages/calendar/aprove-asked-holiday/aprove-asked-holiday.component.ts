@@ -91,7 +91,7 @@ export class AproveAskedHolidayComponent {
             var selectedHolidayModel = new askedHolidayModel();
             selectedHolidayModel.pendingAskedHolidayToAskedHoliday(selectedHoliday, status, this.user.centerId)
             console.log(selectedHolidayModel);
-            this._askedHolidayService.addAskedHoliday(selectedHolidayModel).subscribe({
+            this._askedHolidayService.updateAskedHoliday(selectedHolidayModel).subscribe({
               next:(userLoggedData) => {
                 if(userLoggedData)
                 {

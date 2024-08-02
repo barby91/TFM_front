@@ -4,6 +4,7 @@ export class unityModel{
     description:string;
     maxByDay:number;
     maxByDayWeekend:number;
+    idCenter:number | undefined;
 
     constructor(id: number, name:string, description:string, maxByDay:number, maxByDayWeekend:number){
         this.id = id;

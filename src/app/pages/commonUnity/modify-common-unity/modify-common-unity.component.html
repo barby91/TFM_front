@@ -14,7 +14,21 @@
       <label id="descriptionLbl" for="InputDescription1">Descripción</label>
       <input type="text" class="form-control" id="InputDescription1" placeholder="descripción" formControlName="description">
       <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger">
-        <div id="descriptoinErrorTxt" *ngIf="description.errors?.['required']">La descripción es obligatoria.</div>
+        <div id="descriptionErrorTxt" *ngIf="description.errors?.['required']">La descripción es obligatoria.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label id="maxByDayLbl" for="InputMaxByDay1">Max/día</label>
+      <input type="text" class="form-control" id="InputMaxByDay1" formControlName="maxByDay">
+      <div *ngIf="maxByDay.invalid && (maxByDay.dirty || maxByDay.touched)" class="text-danger">
+        <div id="maxByDayErrorTxt" *ngIf="maxByDay.errors?.['min']">El máximo por día es obligatorio.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label id="MaxByDayWeekendLbl" for="InputMaxByDayWeekend1">Max/día(FS)</label>
+      <input type="text" class="form-control" id="InputMaxByDayWeekend1"  formControlName="maxByDayWeekend">
+      <div *ngIf="maxByDayWeekend.invalid && (maxByDayWeekend.dirty || maxByDayWeekend.touched)" class="text-danger">
+        <div id="maxByDayWeekendErrorTxt" *ngIf="maxByDayWeekend.errors?.['min']">La máximo por día para el fin de semana es obligatorio.</div>
       </div>
     </div>
     <div class="form-group buttons-div">    

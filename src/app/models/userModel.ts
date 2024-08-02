@@ -13,6 +13,7 @@ export interface userModel{
     centerName:string,
     centerId:number,
     specialtyName:string,
+    unityName:string,
     levelName: string,
     color: string
 }

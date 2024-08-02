@@ -20,7 +20,7 @@ export class AskedHolidayServiceService {
   }
 
   updateAskedHoliday(askedHoliday:askedHolidayModel):Observable<any>{
-    return this.http.post(environment.apiBaseUrl + this.myApiUrl, askedHoliday)
+    return this.http.put(environment.apiBaseUrl + this.myApiUrl, askedHoliday)
                 .pipe(
                   catchError(this.handleError)
                 );

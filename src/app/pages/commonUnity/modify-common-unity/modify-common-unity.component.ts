@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { userModel } from '../../../models/userModel';
 import { unityModel } from '../../../models/unityModel';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, MinValidator, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CommonUnityService } from '../../../services/commonUnity/common-unity.service';
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,10 @@ export class ModifyCommonUnityComponent {
   commonUnityError:string = "";
   newUnityForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    description: new FormControl('', Validators.required)
+    description: new FormControl('', Validators.required),
+    maxByDay: new FormControl(0, Validators.min(1)),
+    maxByDayWeekend: new FormControl(0, Validators.min(1)),
+    idCenter: new FormControl(0)
   });;
   user!:userModel;
   mode:number = 0;
@@ -50,10 +53,12 @@ export class ModifyCommonUnityComponent {
           if(unitycommonData)
           {
             this.untiy = unitycommonData as unityModel;
-            console.log(this.untiy);
             this.newUnityForm = new FormGroup({
               name: new FormControl(this.untiy.name, [Validators.required]),
-              description: new FormControl(this.untiy.description, Validators.required)
+              description: new FormControl(this.untiy.description, Validators.required),
+              maxByDay: new FormControl(this.untiy.maxByDay, Validators.min(1)),
+              maxByDayWeekend: new FormControl(this.untiy.maxByDayWeekend, Validators.min(1)),
+              idCenter: new FormControl(this.user.centerId)
             });
           }
           else
@@ -76,6 +81,14 @@ export class ModifyCommonUnityComponent {
     return this.newUnityForm.controls['description'];
   }
 
+  get maxByDay(){
+    return this.newUnityForm.controls['maxByDay'];
+  }
+
+  get maxByDayWeekend(){
+    return this.newUnityForm.controls['maxByDayWeekend'];
+  }
+
   close() {
     this.dialogRef.close();
   }
@@ -86,6 +99,8 @@ export class ModifyCommonUnityComponent {
         var modifyUnity = this.newUnityForm.value as unityModel;
         this.untiy.name = modifyUnity.name;
         this.untiy.description = modifyUnity.description;
+        this.untiy.maxByDay = modifyUnity.maxByDay;
+        this.untiy.maxByDayWeekend = modifyUnity.maxByDayWeekend;
         this._commonUnityService.updateCommonUnity(this.untiy).subscribe({
           next:(untiyData) => {
             if(untiyData)
@@ -103,6 +118,7 @@ export class ModifyCommonUnityComponent {
         });
       }
       else{
+        this.newUnityForm.controls['idCenter'].setValue(this.user.centerId);
         this._commonUnityService.addCommonUnity(this.newUnityForm.value as unityModel).subscribe({
           next:(specialtyData) => {
             if(specialtyData)

@@ -45,7 +45,7 @@ export class SpecialtyServiceService {
   }
 
   updateSpecialty(specialty:specialtyModel):Observable<any>{
-    return this.http.post(environment.apiBaseUrl + this.myApiUrl, specialty)
+    return this.http.put(environment.apiBaseUrl + this.myApiUrl, specialty)
                 .pipe(
                   catchError(this.handleError)
                 );

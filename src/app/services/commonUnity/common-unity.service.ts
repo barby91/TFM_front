@@ -11,9 +11,8 @@ export class CommonUnityService {
   private myApiUrl = "api/Unity/"
   constructor(private http:HttpClient) { }
 
-  getAllCommonUnity():Observable<any>{
-    console.log("Hola");
-    return this.http.get(environment.apiBaseUrl + this.myApiUrl)
+  getAllCommonUnity(idCenter:number):Observable<any>{
+    return this.http.get(environment.apiBaseUrl + this.myApiUrl+"?idCenter="+idCenter)
                 .pipe(
                   catchError(this.handleError)
                 );
@@ -45,7 +44,7 @@ export class CommonUnityService {
   }
 
   updateCommonUnity(specialty:unityModel):Observable<any>{
-    return this.http.post(environment.apiBaseUrl + this.myApiUrl, specialty)
+    return this.http.put(environment.apiBaseUrl + this.myApiUrl, specialty)
                 .pipe(
                   catchError(this.handleError)
                 );

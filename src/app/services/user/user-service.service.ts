@@ -47,7 +47,7 @@ export class UserServiceService {
   }
 
   updateUser(user:realUserModel):Observable<any>{
-    return this.http.post(environment.apiBaseUrl + this.myApiUrl, user)
+    return this.http.put(environment.apiBaseUrl + this.myApiUrl, user)
                 .pipe(
                   catchError(this.handleError)
                 );
