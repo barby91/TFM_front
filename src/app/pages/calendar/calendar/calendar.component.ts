@@ -506,13 +506,19 @@ export class CalendarComponent {
               var inputDateElement = (<HTMLInputElement>document.getElementById("InputStartDate1"));
               if(inputDateElement != null){
                 inputDateElement.valueAsDate = null;
-                this.askedHolidayForm.controls["dateFrom"].setValue('');
+                this.askedHolidayForm.controls["dateFrom"].setValue('');               
+                this.askedHolidayForm.get("dateFrom")?.clearValidators();
               }
               inputDateElement = (<HTMLInputElement>document.getElementById("InputEndDate1"));
               if(inputDateElement != null){
                 inputDateElement.valueAsDate = null;
-                this.askedHolidayForm.controls["dateTo"].setValue('');
+                this.askedHolidayForm.controls["dateTo"].setValue('');                
+                this.askedHolidayForm.get("dateTo")?.clearValidators();
               }
+              
+              this.askedHolidayForm.reset();                    
+              this.askedHolidayForm.get("dateFrom")?.clearValidators();   
+              this.askedHolidayForm.get("dateTo")?.clearValidators();
             })
           });
         }
