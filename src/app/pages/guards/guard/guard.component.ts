@@ -51,7 +51,8 @@ export class GuardComponent {
   calculateGuardForm = new FormGroup({
     groupOfWeeks: new FormControl(0),
     idCenter: new FormControl(0),
-    idSpecialty: new FormControl(0)
+    idSpecialty: new FormControl(0),
+    year: new FormControl(0)
   });
 
   constructor(private _guardService:OnGuardServiceService) {
@@ -95,6 +96,7 @@ export class GuardComponent {
     }; 
 
     this.calculateGuardForm.controls.idCenter.setValue(this.globalUser.centerId);
+    this.calculateGuardForm.controls.year.setValue(this.year);
   }
 
   daysInYear(year:number) {

@@ -1,5 +1,6 @@
 export interface request{
     idCenter:number,
-    month:number,
-    idSpecialty:number
+    groupOfWeeks:number,
+    idSpecialty:number,
+    year: number
 }
