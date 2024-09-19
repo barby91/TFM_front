@@ -266,8 +266,8 @@ export class GuardComponent {
               {
                 for(let usr of dayGuard.assignedUsers){
                   var label = document.createElement("p");
-                  //var color = "background-color: "+ usr.color + ";";
-                  //label.setAttribute("style", color);
+                  var color = "color: "+ usr.color + ";";
+                  label.setAttribute("style", color);
                   label.textContent = usr.nameSurname;
                   label.id = dayGuard.day + "-" + usr.nameSurname;
                   dayParent.children[0].appendChild(label);
