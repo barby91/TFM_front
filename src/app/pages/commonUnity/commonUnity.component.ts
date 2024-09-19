@@ -71,7 +71,7 @@ export class CommonUnityComponent {
     }
     const dialogRef = this.modal.open(ModifyCommonUnityComponent, {
       width: '400px',
-      height: '300px',
+      height: '455px',
       disableClose: true
     });
 

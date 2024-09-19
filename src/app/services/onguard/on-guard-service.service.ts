@@ -38,6 +38,6 @@ export class OnGuardServiceService {
       console.error('Backend retornó el código de estado ', error.status, error.error);
     }
 
-    return throwError(() => new Error('Algo falló. Por favor intente nuevamente'))
+    return throwError(() => new Error(error.error + '. Por favor intente nuevamente.'))
   }
 }

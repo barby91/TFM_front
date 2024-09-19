@@ -147,6 +147,7 @@ export class UserComponent {
     if (this.currentFile) {
       this._userService.addUserByFile(this.currentFile, this.user.centerId).subscribe({
         next: (userData) => {
+          console.log(userData);
           if (userData) {
             this.getAllUsers();
           }
