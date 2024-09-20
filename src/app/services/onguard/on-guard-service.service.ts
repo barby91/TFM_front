@@ -13,7 +13,6 @@ export class OnGuardServiceService {
   constructor(private http:HttpClient) { }
   
   calculateGuards(request:request):Observable<any>{
-    console.log(request);
     return this.http.post(environment.apiBaseUrl + this.myApiUrl, request)
                 .pipe(
                   catchError(this.handleError)

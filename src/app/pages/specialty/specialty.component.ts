@@ -96,7 +96,6 @@ export class SpecialtyComponent {
         this.specialtyError = "";
         if(result === 'true')
         {
-          console.log('result es true');
           this._specialtyService.deleteSpecialty(id).subscribe({
             next:(specialtyData) => {
               if(specialtyData)
@@ -113,10 +112,6 @@ export class SpecialtyComponent {
             })
           });
         }
-        else
-        {
-          console.log('result es false');
-        }
       });
     }
   }
@@ -130,7 +125,6 @@ export class SpecialtyComponent {
     if (this.currentFile) {
       this._specialtyService.addSpecialtyByFile(this.currentFile, this.user.centerId).subscribe({
         next: (userData) => {
-          console.log(userData);
           if (userData) {
             this.getAllSpecialties();
           }
@@ -141,7 +135,6 @@ export class SpecialtyComponent {
           this.resetInputFile();
         },
         error: (errorData) => {
-          console.log(errorData);
           this.specialtyError = errorData;
           this.resetInputFile();
         },

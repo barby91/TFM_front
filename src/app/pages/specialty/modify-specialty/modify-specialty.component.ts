@@ -108,15 +108,10 @@ export class ModifySpecialtyComponent {
         const index = this.specialty.unities.indexOf(unity);
         this.specialty.unities.splice(index, 1);
       }
-      else
-      {
-        console.log('result es false');
-      }
     });
   }
 
   save() {
-    console.log(this.newSpecialtyForm);
     if(this.newSpecialtyForm.valid){
       if(this.mode === 1){
         var modifySpecialty = this.newSpecialtyForm.value as specialtyModel;

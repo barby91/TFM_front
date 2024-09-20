@@ -70,30 +70,8 @@ export class GuardComponent {
       {
         this.leftMonths.push(this.totalMonths[element]);
       }
-      //this.getDaysFromDate(this.totalMonths[element].num, this.year);
     }
 
-    // let totalDaysYear: number = this.daysInYear(this.year);
-    //   let firstDay: Date = new Date(this.year, 0, 1);
-    //   let lastDay: Date = new Date(this.year, 0, 1);
-    //   let now : Date = new Date(this.year, moment().month(), moment().date());
-    //   if (firstDay.getDay() !== 1) {
-    //       let daysToAdd: number = ((1 - firstDay.getDay() + 7) % 7);
-    //       firstDay.setDate(firstDay.getDate() + daysToAdd);
-    //   }
-
-    //   let daysAssigned = 0;
-    //   while (daysAssigned <= (totalDaysYear/30)) {
-    //     lastDay.setDate(firstDay.getDate() + 29)
-    //     daysAssigned++;
-    //     console.log("primer día" + firstDay.toLocaleDateString());
-    //     console.log("ultimo día" + lastDay.toLocaleDateString());
-    //     if(lastDay >= now && firstDay >= now)
-    //     {
-    //       this.leftMonths.push({sp: firstDay.toLocaleDateString() + " - " + lastDay.toLocaleDateString(), en: firstDay.toLocaleDateString() + " - " + lastDay.toLocaleDateString(), num: daysAssigned});
-    //     }
-    //     firstDay.setDate(firstDay.getDate() + 30);
-    //   }
 
     var userString = localStorage.getItem('user');
     if(userString !== null)
@@ -178,15 +156,12 @@ export class GuardComponent {
 
   checkChange(element:any){
     if(element.id.includes("Mates")){
-      console.log("mias y compañeros");
       this.seeGuards = 2;
     }
     else if(element.id.includes("MyGuards")){
-      console.log("mías");
       this.seeGuards = 1;
     }
     if(element.id.includes("AllGuards")){
-      console.log("todas");
       this.seeGuards = 3;
     }
 
@@ -246,7 +221,6 @@ export class GuardComponent {
                 }
                 
                 for(let usr of dayGuard.assignedUsers){
-                  console.log(matesNames);
                   if(matesNames.find(mn => mn == usr.nameSurname) != null)
                   {
                     paint = true;
@@ -266,8 +240,8 @@ export class GuardComponent {
               {
                 for(let usr of dayGuard.assignedUsers){
                   var label = document.createElement("p");
-                  var color = "color: "+ usr.color + ";";
-                  label.setAttribute("style", color);
+                  //var color = "color: "+ usr.color + ";";
+                  //label.setAttribute("style", color);
                   label.textContent = usr.nameSurname;
                   label.id = dayGuard.day + "-" + usr.nameSurname;
                   dayParent.children[0].appendChild(label);

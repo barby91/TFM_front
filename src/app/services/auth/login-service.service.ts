@@ -11,8 +11,6 @@ export class LoginServiceService {
   private myApiUrl = "api/Login/"
 
   constructor(private http:HttpClient) {
-    console.log(environment);
-    console.log(environment.apiBaseUrl);
   }
   
   loginUser(credentials:userLogRequest):Observable<any>{

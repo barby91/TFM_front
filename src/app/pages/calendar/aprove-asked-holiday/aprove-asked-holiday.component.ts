@@ -58,7 +58,6 @@ export class AproveAskedHolidayComponent {
   changeStatus(id:number, status:string, ){
     var selectedHoliday = this.pendingAskingHolidayList.find(ah => ah.id === id);
     if(selectedHoliday != null){
-      console.log(id);
       var periodMessage = "las vacaciones del periodo " + selectedHoliday.period;
       var startMessage = "";
       if (selectedHoliday.period === "Weekend"){
@@ -89,8 +88,7 @@ export class AproveAskedHolidayComponent {
         {
           if(selectedHoliday != null){
             var selectedHolidayModel = new askedHolidayModel();
-            selectedHolidayModel.pendingAskedHolidayToAskedHoliday(selectedHoliday, status, this.user.centerId)
-            console.log(selectedHolidayModel);
+            selectedHolidayModel.pendingAskedHolidayToAskedHoliday(selectedHoliday, status, this.user.centerId);
             this._askedHolidayService.updateAskedHoliday(selectedHolidayModel).subscribe({
               next:(userLoggedData) => {
                 if(userLoggedData)
@@ -109,10 +107,6 @@ export class AproveAskedHolidayComponent {
           } else {
             this.pendingAskedHolidayError = "No se ha podido actualizar la solicitud";
           }
-        }
-        else
-        {
-          console.log('result es false');
         }
       })        
     }

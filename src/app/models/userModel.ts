@@ -15,5 +15,5 @@ export interface userModel{
     specialtyName:string,
     unityName:string,
     levelName: string,
-    color: string
+    //color: string
 }

@@ -347,7 +347,6 @@ export class CalendarComponent {
             (this.typeAsked === "Weekend" && (selectedDayElement.className.includes("publicHoliday") ||
                                               (selectedDate.getDay() === 0 || selectedDate.getDay() === 6))))){
           if(this.clicks === 0){
-            console.log("hola");
             this.startSelectedDate = selectedDate;
             inputDateElement = (<HTMLInputElement>document.getElementById("InputStartDate1"));
             this.askedHolidayForm.controls['dateFrom'].setValue(moment(selectedDate).format('YYYY-MM-DD'));
@@ -491,7 +490,6 @@ export class CalendarComponent {
 
       dialogRef.afterClosed().subscribe(result => {
         if(result === 'true'){
-          console.log(this.askedHolidayForm.value as askedHolidayModel);
           this._askedHolidayService.addAskedHoliday(this.askedHolidayForm.value as askedHolidayModel).subscribe({
             next:(userLoggedData) => {
               if(userLoggedData) {

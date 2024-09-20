@@ -118,7 +118,6 @@ export class ModifyUserComponent {
       
       this._userService.getUser(idElement).subscribe({
         next:(userData) => {
-          console.log(userData);
           if(userData)
           {
             this.user = userData as realUserModel;
@@ -158,6 +157,7 @@ export class ModifyUserComponent {
             var buttonParent = document.getElementById('specialtyDropdown');
             if(buttonParent !== null){
               var specialty = this.specialtyList.find(l => l.id === this.user.specialtyId);
+              console.log(specialty);
               if(specialty !== undefined){
                 buttonParent.textContent = specialty.name;
                 this.unityList = specialty.unities;
@@ -263,8 +263,6 @@ export class ModifyUserComponent {
       this.newUserForm.get('name')?.enable();
       this.newUserForm.get('surname')?.enable();
     }
-    console.log(this.newUserForm.valid);
-    console.log(this.newUserForm.value as realUserModel);
     if(this.newUserForm.valid){
       if(this.mode === 1){
         var modifyUser = this.newUserForm.value as realUserModel;

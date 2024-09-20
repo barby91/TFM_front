@@ -85,7 +85,6 @@ export class UserComponent {
 
   openDialog(mode:number, idElement:number):void{
     localStorage.setItem('mode', mode.toString());
-    console.log(idElement);
     if(idElement !== 0){
       localStorage.setItem('idElement', idElement.toString());
     }
@@ -130,10 +129,6 @@ export class UserComponent {
             })
           });
         }
-        else
-        {
-          console.log('result es false');
-        }
       });
     }
   }
@@ -147,7 +142,6 @@ export class UserComponent {
     if (this.currentFile) {
       this._userService.addUserByFile(this.currentFile, this.user.centerId).subscribe({
         next: (userData) => {
-          console.log(userData);
           if (userData) {
             this.getAllUsers();
           }

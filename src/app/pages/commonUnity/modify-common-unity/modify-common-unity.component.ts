@@ -40,7 +40,6 @@ export class ModifyCommonUnityComponent {
       this.user = JSON.parse(userString as string);
     }
     this.mode = Number(localStorage.getItem('mode'));
-    console.log(this.mode);
 
     //si el mode es 1 será modo edición, obtenemos los datos
     if(this.mode === 1)

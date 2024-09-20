@@ -62,7 +62,6 @@ export class UserServiceService {
 
   private handleError(error:HttpErrorResponse)
   {
-    console.log(error);
     if(error.status === 0)
     {
       console.error('Se ha producido un error ', error.error)

@@ -36,15 +36,12 @@ export class ShowAskedHolidaysComponent {
 
   checkChange(element:any){
     if(element.id.includes("Aproved")){
-      console.log("check aproved");
       this.seeAproved = !this.seeAproved 
     }
     if(element.id.includes("Asked")){
-      console.log("check asked");
       this.seeAsked = !this.seeAsked
     }
     if(element.id.includes("Cancelled")){
-      console.log("check cancelled");
       this.seeCancelled = !this.seeCancelled;
     }
 
